@@ -1,0 +1,125 @@
+<!--
+此文件为开发者工具生成，生成时间: 2025/12/29下午1:51:19
+使用方法：
+在 E:\WeChatProjects\qianmo-takeaway\miniprogram\pages\index\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 E:\WeChatProjects\qianmo-takeaway\miniprogram\pages\index\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="index-container">
+      <view class="window-bgc"></view>
+      <view class="container">
+        <view is="pages/index/banner/banner">
+          <view class="banner--swiper-box">
+            <swiper autoplay="false" class="banner--swiper" duration="1000" indicator-active-color="#FF734C" indicator-color="rgba(0, 0, 0, .3)" interval="2000" current="0">
+              <swiper-item class="banner--swiper-item swiper-item-1" >
+                <navigator class="banner--navigator">
+                  <image class="banner--img sk-image"></image>
+                </navigator>
+              </swiper-item>
+              <swiper-item class="banner--swiper-item swiper-item-2" >
+                <navigator class="banner--navigator">
+                  <image class="banner--img sk-image"></image>
+                </navigator>
+              </swiper-item>
+            </swiper>
+            <view class="banner--indicator">
+              <text class="banner--active banner--rectangle"></text>
+              <text class="banner--rectangle"></text>
+              <text class="banner--rectangle"></text>
+              <text class="banner--rectangle"></text>
+              <text class="banner--rectangle"></text>
+            </view>
+          </view>
+        </view>
+        <view is="pages/index/entrance/entrance">
+          <view class="entrance--nav-list">
+            <view class="entrance--nav-item">
+              <navigator class="entrance--navigator-nav">
+                <image class="entrance--nav-img sk-image"></image>
+                <text class="entrance--nav-text sk-transparent sk-text-14-2857-315 sk-text">冬日畅饮</text>
+              </navigator>
+            </view>
+            <view class="entrance--nav-item">
+              <navigator class="entrance--navigator-nav">
+                <image class="entrance--nav-img sk-image"></image>
+                <text class="entrance--nav-text sk-transparent sk-text-14-2857-276 sk-text">冬日馒头</text>
+              </navigator>
+            </view>
+            <view class="entrance--nav-item">
+              <navigator class="entrance--navigator-nav">
+                <image class="entrance--nav-img sk-image"></image>
+                <text class="entrance--nav-text sk-transparent sk-text-14-2857-950 sk-text">冬日暖汤</text>
+              </navigator>
+            </view>
+            <view class="entrance--nav-item">
+              <navigator class="entrance--navigator-nav">
+                <image class="entrance--nav-img sk-image"></image>
+                <text class="entrance--nav-text sk-transparent sk-text-14-2857-701 sk-text">大厨特选</text>
+              </navigator>
+            </view>
+            <view class="entrance--nav-item">
+              <navigator class="entrance--navigator-nav">
+                <image class="entrance--nav-img sk-image"></image>
+                <text class="entrance--nav-text sk-transparent sk-text-14-2857-756 sk-text">人气套餐</text>
+              </navigator>
+            </view>
+          </view>
+        </view>
+        <view class="adver">
+          <view class="adver-left">
+            <navigator>
+              <image mode="widthFix" style="height: 189.611px;" class="sk-image"></image>
+            </navigator>
+          </view>
+          <view class="adver-right">
+            <view>
+              <navigator>
+                <image mode="widthFix" style="height: 123.035px;" class="sk-image"></image>
+              </navigator>
+            </view>
+            <view>
+              <navigator>
+                <image mode="widthFix" style="height: 95.9479px;" class="sk-image"></image>
+              </navigator>
+            </view>
+          </view>
+        </view>
+        <view is="components/goods-list/goods-list">
+          <view class="list--goods_container">
+            <view class="list--goods_title sk-transparent sk-text-11-5385-120 sk-text" style="background-position-x: 50%;">人气推荐</view>
+            <view class="list--goods_card_list sk-pseudo sk-pseudo-circle">
+              <view is="components/goods-card/goods-card">
+                <view class="card--goods_cart_container">
+                  <navigator class="card--navigator_nav">
+                    <image class="card--good_img sk-image" mode="widthFix" style="height: 116.667px;"></image>
+                  </navigator>
+                </view>
+              </view>
+              <view is="components/goods-card/goods-card">
+                <view class="card--goods_cart_container">
+                  <navigator class="card--navigator_nav">
+                    <image class="card--good_img sk-image" mode="widthFix" style="height: 130.906px;"></image>
+                  </navigator>
+                </view>
+              </view>
+              <view is="components/goods-card/goods-card"></view>
+              <view is="components/goods-card/goods-card"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,117 @@
+<!--pages/order/index.wxml-->
+<view class="container order">
+  <view class="address-card">
+    <!-- 添加收货地址 -->
+    <view wx:if="{{!address.id}}" class="add-address"  bindtap="toAddress">
+      <van-icon size="22px" name="add" />
+      <view>添加收货地址</view>
+    </view>
+
+    <view wx:else class="order-address detail-flex">
+      <view class="address-content">
+        <view class="title"> {{address.provinceName + address.cityName + address.districtName + address.detail }}
+          <text class="default-tag-label">{{labelArray[address.label]}}</text>
+        </view>
+        <!-- <view class="detail">松日鼎盛大厦0层0号</view> -->
+        <view class="info detail-flex">
+          <text>{{address.consignee}}</text>
+          <text>{{address.phone}}</text>
+        </view>
+      </view>
+
+      <view class="select-address">
+        <navigator
+          class="navigator"
+          url="/modules/settingModule/pages/address/list/index?flag=1"
+        >
+          <van-icon color="#bbb" name="arrow" size="22px" />
+        </navigator>
+      </view>
+    </view>
+
+    <view class="top-line"></view>
+  </view>
+
+  <view class="order-info">
+    <van-cell-group class="group">
+      <!-- 餐具数量 -->
+      <van-field
+        label-class="filed-label"
+        model:value="{{ tablewareNumber }}"
+        label="餐具数量："
+        placeholder="默认根据参量提供"
+        placeholder-style="color: #969799"
+      />
+
+      <!-- 是否需要发票 -->
+      <van-field
+        label-class="filed-label"
+        input-class="input-class"
+        model:value="{{  }}"
+        label="发票："
+        placeholder="请后续联系商家"
+        placeholder-style="color: #969799"
+      />
+
+      <!-- 期望送达日期 -->
+      <van-cell
+        label-class="filed-label"
+        title="期望配送日期："
+        is-link
+        value="{{ estimatedDeliveryTime }}"
+        bind:click="onShowDateTimerPopUp"
+      />
+
+      <van-cell title="订单备注：" border="{{ false }}" use-label-slot>
+        <textarea
+          slot="label"
+          model:value="{{ remark }}"
+          class="form-textarea"
+          placeholder="忌口,特殊注意事项（请勿填写特殊符号或表情符号）"
+          name="textarea"
+        />
+      </van-cell>
+    </van-cell-group>
+  </view>
+
+  <view class="goods-wraper">
+    <!-- 商品清单 -->
+    <view class="goods-list">
+      <view class="goods-item detail-flex" wx:for="{{cartList}}" wx:key="id">
+        <view class="img">
+          <image src="{{item.image}}" />
+        </view>
+        <view class="content">
+          <view class="goods-title">{{item.name}}</view>
+          <view class="goods-price">
+            <view class="price"> ¥ {{item.amount}} </view>
+            <view>x{{item.number}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 支付区域 -->
+  <view class="footer detail-flex">
+    <view class="left"> ¥{{totalPrice}} </view>
+    <viwe class="right" bind:tap="submitOrder" >提交订单</viwe>
+  </view>
+
+  <van-popup
+    show="{{ show }}"
+    round
+    position="bottom"
+    custom-style="height: 50%"
+    bind:close="onCancelTimePicker"
+  >
+    <van-datetime-picker
+      type="dateTime"
+      min-date="{{ minDate }}"
+      max-date="{{ maxDate }}"
+      bind:confirm="onConfirmTimerPicker"
+      bind:cancel="onCancelTimePicker"
+      minute-step="{{ 5 }}"
+    />
+  </van-popup>
+</view>

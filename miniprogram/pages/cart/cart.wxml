@@ -1,0 +1,72 @@
+<view bind:tap="onSwipeCellPage">
+  <!-- 购物车列表结构 -->
+  <view
+    wx:if="{{ cartList.length }}"
+    class="container goods-wrap"
+    bindtap="onSwipeCellPageTap"
+  >
+    <view class="goods-item" wx:for="{{ cartList }}" wx:key="id">
+      <van-swipe-cell id="swipe-cell-{{item.id}}" bind:open="swipeCellOpen" bind:click="onSwipeCellClick" class="goods-swipe" right-width="{{ 65 }}">
+        <van-cell-group border="{{ false }}">
+          <view class="goods-info">
+            <view class="left">
+              <!-- <van-checkbox checked-color="#FA4126" value="{{ checked }}"></van-checkbox> -->
+            </view>
+            <view class="mid">
+              <image class="img" src="{{item.image}}" />
+            </view>
+            <view class="right">
+              <view class="title">
+                {{item.name}}
+              </view>
+              <view class="buy">
+                <view class="price">
+                  <view class="symbol">¥</view>
+                  <view class="num">{{item.amount}}</view>
+                </view>
+                <view class="buy-btn">
+                  <van-stepper 
+                  min="1" 
+                  max="200" integer 
+                  value="{{ item.number }}" 
+                  data-id="{{item.dishId}}"
+                  data-dishflavor="{{item.dishFlavor}}"
+                  data-index="{{index}}"
+                  data-oldbuynum="{{item.number}}"
+                  disabled-input
+                  readonly
+                  bindinput="noop"
+                  bindchange="changBuyNum"/>
+                </view>
+              </view>
+            </view>
+          </view>
+        </van-cell-group>
+        <view slot="right" class="van-swipe-cell__right" bind:tap="delCartDish" data-id="{{item.id}}">删除</view>
+      </van-swipe-cell>
+    </view>
+  </view>
+
+  <!-- 购物车列表为空展示的结构 -->
+  <van-empty wx:else description="{{ emptyDes }}">
+ 
+      <!-- <van-button round type="danger" class="bottom-button" bind:click="goToCategory" >去购物</van-button> -->
+
+
+    <!-- <navigator url="/pages/login/login">
+      <van-button round type="danger" class="bottom-button">去登录</van-button>
+    </navigator> -->
+  </van-empty>
+
+  <!-- 底部工具栏 -->
+  <van-submit-bar
+    wx:if="{{ cartList.length }}"
+    price="{{ totalPrice }}"
+    button-text="去结算"
+    tip="{{ true }}"
+    bind:submit="toOrder"
+  >
+    <!-- <van-checkbox value="{{ true }}" checked-color="#FA4126"> 全选 </van-checkbox> -->
+    <van-button type="warning" round bind:tap="cleanCart" >清空购物车</van-button>
+  </van-submit-bar>
+</view>

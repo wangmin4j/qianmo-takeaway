@@ -1,0 +1,95 @@
+<view class="container address">
+  <form>
+    <!-- 地址信息 -->
+    <view class="address-info">
+      <!-- 收货人 -->
+      <view class="row">
+        <text class="title">收货人</text>
+        <input
+          model:value="{{consignee}}"
+          placeholder-style="color: #969799"
+          placeholder="请输入收货人姓名"
+        />
+      </view>
+
+    <!-- 性别选择器 -->
+    <view class="row">
+      <text class="title">性别</text>
+      <picker
+      mode="selector"
+      value="{{index}}"
+      range="{{sexArray}}"
+      bindchange="onSexChange">
+        <view wx:if="{{sex}}">{{sexArray[sex]}}</view>
+        <view class="placeholder" wx:else=""> 请选择性别 </view>
+      </picker>
+    </view>
+
+      <!-- 手机号码 -->
+      <view class="row">
+        <text class="title">手机号码</text>
+        <input
+        model:value="{{phone}}"
+          placeholder-style="color: #969799"
+          placeholder="请输入收货人手机号"
+        />
+      </view>
+
+      <!-- 省市区 -->
+      <view class="row">
+        <text class="title">所在地区</text>
+
+        <!-- 地址选择器 -->
+        <picker 
+          mode="region" 
+          value="{{ [provinceName, cityName, districtName] }}"
+          bindchange="onAddressChange"
+          >
+          <view class="region" 
+          wx:if="{{provinceName}}">{{provinceName + ' ' + cityName + ' ' + districtName}}</view>
+          <view class="placeholder" wx:else> 请选择收货人所在地区</view>
+        </picker>
+
+        <!-- <view class="location">
+          <van-icon name="location-o" color="#777" />
+          <text>定位</text>
+        </view> -->
+      </view>
+
+      <!-- 详细地址 -->
+      <view class="row">
+        <text class="title">详细地址</text>
+        <textarea
+          model:value="{{detail}}"
+          auto-height
+          placeholder-style="color: #969799"
+          placeholder="门牌号(例：5号楼1单元203室)"
+        />
+      </view>
+
+       <!-- 标签选择-->
+    <view class="row">
+      <text class="title">标签</text>
+      <picker
+      mode="selector"
+      value="{{index}}"
+      range="{{labelArray}}"
+      bindchange="onLabelChange">
+        <view wx:if="{{label}}">{{labelArray[label]}}</view>
+        <view class="placeholder" wx:else=""> 地址标签：默认/公司/家/学校 </view>
+      </picker>
+    </view>
+
+      <!-- 设置默认地址 -->
+      <view class="row" wx:if="{{id}}">
+        <text class="title">设置默认地址</text>
+        <switch 
+         model:checked="{{isDefault}}"
+         color="#f3514f" class="checkbox" />
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="button" bindtap="saveAddrssForm">{{ id ? '修改' : '保存'}}</button>
+  </form>
+</view>

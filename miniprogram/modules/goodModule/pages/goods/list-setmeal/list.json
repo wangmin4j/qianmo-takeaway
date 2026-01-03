@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "goods-card": "/components/good-card-setmeal/goods-card"
+  },
+  "navigationBarTitleText": "商品列表"
+}

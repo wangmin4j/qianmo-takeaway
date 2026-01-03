@@ -1,0 +1,19 @@
+{
+  "name": "qianmo-takeaway",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@vant/weapp": "^1.11.7",
+    "mina-request": "^1.0.8",
+    "miniprogram-computed": "^7.1.0",
+    "mobx-miniprogram": "^6.12.3",
+    "mobx-miniprogram-bindings": "^5.1.1"
+  }
+}
