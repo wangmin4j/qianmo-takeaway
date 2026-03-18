@@ -102,16 +102,26 @@ Page({
    /**
     * 计算总金额
     */
-   getTotalPrice() {
-    let totalPrice = 0
-    this.data.cartList.forEach(item => {
-      totalPrice += item.amount * item.number
-    });
-    this.setData({
-      totalPrice: totalPrice
-    })
-    // console.log(totalPrice)
-  },
+/**
+ * 计算总金额
+ */
+getTotalPrice() {
+  let totalPrice = 0
+  this.data.cartList.forEach(item => {
+    // 1. 防错：确保amount/number是有效数字，避免NaN/undefined导致计算异常
+    const amount = Number(item.amount) || 0
+    const number = Number(item.number) || 0
+    // 2. 修复浮点精度问题（如0.1*3=0.30000000000000004）
+    totalPrice += Math.round((amount * number) * 100) / 100
+  });
+  // 3. 格式化：强制保留两位小数，确保金额格式规范（如123→123.00，123.4→123.40）
+  // 同时确保总金额非负（避免异常数据导致负数）
+  totalPrice = Math.max(totalPrice, 0).toFixed(2)
+  this.setData({
+    totalPrice: totalPrice
+  })
+  // console.log(totalPrice)
+},
 
   // 选择期望送达日期
   onShowDateTimerPopUp() {
